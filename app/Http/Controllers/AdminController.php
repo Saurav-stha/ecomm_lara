@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Category;
+use App\Models\Product;
 
 class AdminController extends Controller
 {
@@ -66,5 +67,46 @@ class AdminController extends Controller
             ->success('Category Updated!');
 
         return redirect('/view_category');
+    }
+
+
+    ////////////////////////////   PRODUCTS ///////////////////////////////////
+
+    public function add_product(){
+
+        $categories = Category::all();
+        return view('admin.add_product', compact('categories'));
+    }
+
+    public function create_product(Request $req){
+
+        $prod = new Product;
+
+        $prod->title = $req->prodTitle;
+        // $prod->title = $req->title;
+        $prod->desc = $req->prodDesc;
+        $prod->price = $req->prodPrice;
+        $prod->quantity = $req->prodQty;
+        $prod->category = $req->category;
+
+        $img = $req->prodImg;
+
+        if($img){
+
+            $imgName = $req->prodTitle.'-'.time().'.'.$img->getClientOriginalExtension();
+
+            $req->prodImg->move('products',$imgName);
+
+            $prod->image = $imgName;
+        }
+
+        $prod->save();
+
+        toastr()
+        ->closeButton()
+        ->timeOut(2500)
+        ->success('New Product Created!');
+
+        return redirect()->back();
     }
 }

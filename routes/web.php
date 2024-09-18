@@ -34,3 +34,8 @@ Route::get('edit_category/{id}', [AdminController::class, 'edit_category'])->
         middleware(['auth','admin']);    
 Route::post('update_category/{id}', [AdminController::class, 'update_category'])->
         middleware(['auth','admin']);    
+
+Route::get("add_product", [AdminController::class, 'add_product'])->
+    middleware(['auth','admin']);
+Route::post("create_product", [AdminController::class, 'create_product'])->
+    middleware(['auth','admin']);
