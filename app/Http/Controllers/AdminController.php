@@ -20,6 +20,11 @@ class AdminController extends Controller
 
         $cat->save();
 
+        toastr()
+            ->closeButton()
+            ->timeOut(2500)
+            ->success('New Category Added!');
+
         return redirect()->back();
     }
 }
