@@ -30,4 +30,18 @@ class AdminController extends Controller
 
         return redirect()->back();
     }
+
+    public function del_category($catid){
+
+        $delCat = Category::find($catid);
+
+        $delCat->delete();
+
+        toastr()
+            ->closeButton()
+            ->timeOut(2500)
+            ->success('Category Deletion Success!');
+
+        return redirect()->back();
+    }
 }

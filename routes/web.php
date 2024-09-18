@@ -23,7 +23,10 @@ require __DIR__.'/auth.php';
 
 Route::get('admin/dashboard', [HomeController::class, 'index'])->
     middleware(['auth','admin']);    
+    
 Route::get('view_category', [AdminController::class, 'view_category'])->
     middleware(['auth','admin']);    
 Route::post('add_category', [AdminController::class, 'add_category'])->
     middleware(['auth','admin']);    
+Route::get('del_category/{id}', [AdminController::class, 'del_category'])->
+        middleware(['auth','admin']);    
