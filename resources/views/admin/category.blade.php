@@ -14,6 +14,27 @@
             justify-content: center;
             align-items: center;
         }
+        .table_deg{
+            text-align:center;
+            margin:auto;
+            border: 2px solid beige;
+            margin-top: 50px;
+            width:600px;
+        }
+
+        th{
+            background-color: skyblue;
+            padding:15px;
+            font-size:20px;
+            font-weight:bold;
+            color:white;
+        }
+        td
+        {
+            color:white;
+            padding:10px;
+            border:1px solid skyblue;
+        }
     </style>
 </head>
 <body>
@@ -34,6 +55,20 @@
                             <input class = "btn btn-primary" type="submit" value="Add">
                         </div>
                     </form>
+                </div>
+
+                <div>
+                    <table class="table_deg">
+                        <tr>
+                            <th>Category</th>
+                        </tr>
+
+                        @foreach($categories as $category)
+                        <tr>
+                            <td>{{ $category->category_name }}</td>
+                        </tr>
+                        @endforeach
+                    </table>
                 </div>
             </div>
         </div>

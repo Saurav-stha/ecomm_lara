@@ -10,7 +10,10 @@ use App\Models\Category;
 class AdminController extends Controller
 {
     public function view_category(){
-        return view('admin.category');
+
+        $categories = Category::all();
+
+        return view('admin.category', compact('categories'));
     }
 
     public function add_category(Request $request){
