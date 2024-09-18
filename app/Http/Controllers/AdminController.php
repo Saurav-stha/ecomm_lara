@@ -44,4 +44,27 @@ class AdminController extends Controller
 
         return redirect()->back();
     }
+
+    public function edit_category($catid){
+
+        $editCat = Category::find($catid);
+        
+        return view('admin.edit_category', compact('editCat'));
+    }
+
+    public function update_category(Request $req, $catid)
+    {
+        $updateCat = Category::find($catid);
+
+        $updateCat->category_name = $req->category;
+
+        $updateCat->save();
+
+        toastr()
+            ->closeButton()
+            ->timeOut(2500)
+            ->success('Category Updated!');
+
+        return redirect('/view_category');
+    }
 }

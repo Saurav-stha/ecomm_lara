@@ -60,12 +60,15 @@
                 <div>
                     <table class="table_deg">
                         <tr>
-                            <th colspan=2>Category</th>
+                            <th colspan=3>Category</th>
                         </tr>
 
                         @foreach($categories as $category)
                         <tr>
                             <td>{{ $category->category_name }}</td>
+                            <td>
+                                <a href="{{url('edit_category',$category->id)}}" class="btn btn-success">Edit</a>
+                            </td>
                             <td>
                                 <a href="{{ url('del_category', $category->id) }}" class="btn btn-danger">Del</a>
                             </td>
